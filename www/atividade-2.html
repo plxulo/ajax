@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="output.css">
   <title>Cadastro de Alunos</title>
 </head>
 
@@ -53,12 +54,12 @@
   -->
 
   <form action="" method="post" id="form1">
-    DIGITE A MATRÍCULA: <input type="text" name="matricula">
+    DIGITE A MATRÍCULA: <input class="border" type="text" name="matricula">
     <br> <br>
-    DIGITE O NOME: <input type="text" name="nome">
+    DIGITE O NOME: <input class="border" type="text" name="nome">
     <br> <br>
     <!-- BOTÃO DEFAULT ACABA RESETANDO A PÁGINA E PERDENDO ARQUIVOS então event.preventDefault(); -->
-    <button name="inserir" onclick="Inserir();">
+    <button class="border" name="inserir" onclick="Inserir();">
       Inserir
     </button>
 
@@ -66,9 +67,9 @@
 
   <br> <br>
 
-  <table align="center" width="400px" border="1" id="tabela">
+  <table class="border" align="center" width="400px" border="1" id="tabela">
     <tr>
-      <td> MATRÍCULA </td>
+      <td class=""> MATRÍCULA </td>
       <td> NOME </td>
     </tr>
   </table>
