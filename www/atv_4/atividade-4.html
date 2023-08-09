@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../output.css">
+  <title>Cadastro de Alunos</title>
+</head>
+
+<script src="../jquery-1.8.2.min.js"></script>
+
+<script>
+  function Inserir() {
+    event.preventDefault();
+    console.log("Inserir function called");
+    var dadosForm = $('#form1').serialize(); // Pegar os campos do formulário para enviar para o PHP.
+
+    // Enviar dados para PHP:
+    $.ajax({
+      type: "POST",
+      url: "../php/inserir.php",
+      data: dadosForm,
+      dataType: 'json',
+    
+      success: function(Matriculas) {
+        var info = Matriculas;
+        var lista = info.alunos;
+        var tabela = document.getElementById("tabela");
+
+        for(i=0;i<lista.length;i++) {
+          var numeroLinha = tabela.rows.length;
+          var linha = tabela.insertRow(numeroLinha);
+          var coluna1 = linha.insertCell(0);
+          var coluna2 = linha.insertCell(1);
+          coluna1.innerHTML = lista[i].matricula;
+          coluna2.innerHTML = lista[i].nome;
+        }
+      }
+    })
+  }
+</script>
+
+<body>
+
+  <!-- 
+    Complete este programa para enviar os dados via AJAX para um arquivo PHP 
+    Em seguida faça o PHP retornar um "echo" para a função JavaScript e insira
+    uma nova linha na tabela.
+    PASSO 1) Criar o onclick NO LUGAR CERTO
+    PASSO 2) Criar a função Javascript e enviar os dados para o PHP
+    PASSO 3) Criar o PHP conforme exemplos anteriores
+    PASSO 4) Usar o exemplo do Google DOCs de como preencher uma tabela via AJAX.
+  -->
+
+  <form action="" method="post" id="form1">
+    DIGITE A MATRÍCULA: <input class="border" type="text" name="matricula">
+    <br> <br>
+    DIGITE O NOME: <input class="border" type="text" name="nome">
+    <br> <br>
+    <!-- BOTÃO DEFAULT ACABA RESETANDO A PÁGINA E PERDENDO ARQUIVOS então event.preventDefault(); -->
+    <button class="border" name="inserir" onclick="Inserir();">
+      Inserir
+    </button>
+
+  </form>
+
+  <br> <br>
+
+  <table class="border" align="center" width="400px" border="1" id="tabela">
+    <tr>
+      <td class=""> MATRÍCULA </td>
+      <td> NOME </td>
+    </tr>
+  </table>
+</body>
+
+</html>

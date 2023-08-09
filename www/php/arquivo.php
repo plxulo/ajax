@@ -1,5 +1,5 @@
 <?php
-  include("../inc/db-connection.inc.php");
+  include("../../inc/db-connection.inc.php");
 
   $nome  = $_POST["nome"];    // Campos "name" inseridos no <form>
   $idade = $_POST["idade"];
@@ -24,8 +24,6 @@
 
   array_push($empregados, $resposta);
   // Até aqui ficaria dentro do WHILE.
-
-
 
   // Ao sair do WHILE enviamos de volta para a função JavaScript no formato JSON:
   $json_texto = json_encode(["empregados" => $empregados]);
