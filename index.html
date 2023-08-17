@@ -1,0 +1,51 @@
+<html>
+<head>
+  <meta charset="utf8">
+  <script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+</head>
+<body>
+    <form method="post" action="" id="form1">
+
+      DIGITE A MATRÍCULA:   <input type="text" id="matricula" name="matricula"/>
+      DIGITE O NOME:        <input type="text" id="nome" name="nome"/>
+          
+      <input type="button" name="enviar" value="Enviar" onclick="Executar();"  />
+      <input type="button" name="excluir" value="Excluir" onclick="Executar('excluir');"  />
+
+    </form>
+</body>
+<script type="text/javascript">
+  function Executar(acao){ 
+    var dados = $('#form1').serialize(); 
+    
+    $.ajax({
+      type: "POST",
+      url: "exemplo.php",
+      data: dados + "&acao=" + acao,
+      dataType: 'json',
+                        
+      success: function(retorno)
+      {  
+        var valores = retorno;          
+        var lista = valores.empregados;  
+        
+        for(x=0;x<lista.length;x++)
+        {
+          console.log(lista[x].nome);
+          console.log(lista[x].idade);
+        }
+      },
+      error: function(xhr, status, error) {
+        alert("Erro inesperado:" + error);
+      },
+      beforeSend: function(xhr) {
+        console.log("Operação sendo realizada");
+      },
+      complete: function(xhr, status) {
+        console.log("Operação finalizada.");
+      },
+      timeout: 10000
+    });
+  }
+</script>
+</html>
